@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elevate Web Agency</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Reset */
+* { margin:0; padding:0; box-sizing:border-box; font-family: 'Poppins', sans-serif; }
+body { background:#f5f7fa; color:#111; scroll-behavior:smooth; }
+
+/* Navbar */
+nav { display:flex; justify-content:space-between; align-items:center; padding:20px 40px; background:#fff; position:sticky; top:0; z-index:100; box-shadow:0 2px 5px rgba(0,0,0,0.1);}
+nav .logo { font-weight:700; font-size:1.5rem; color:#4f46e5; }
+nav ul { display:flex; list-style:none; gap:20px; }
+nav ul li a { color:#111; font-weight:500; }
+nav .cta-buttons { display:flex; gap:10px; }
+nav .btn { background:#4f46e5; color:#fff; padding:10px 20px; border-radius:8px; font-weight:600; cursor:pointer; }
+nav .btn.secondary { background:#fff; color:#4f46e5; border:2px solid #4f46e5; }
+
+/* Hero */
+header.hero { background: linear-gradient(135deg,#4f46e5,#6366f1); color:#fff; text-align:center; padding:120px 20px; }
+header.hero h1 { font-size:3rem; margin-bottom:20px; }
+header.hero p { max-width:600px; margin:0 auto 40px; font-size:1.2rem; }
+header.hero .btn { margin:0 10px; }
+
+/* Sections */
+section { padding:80px 20px; max-width:1200px; margin:auto; }
+h2 { font-size:2.5rem; margin-bottom:40px; text-align:center; }
+
+/* Features & Benefits */
+.features, .benefits { display:flex; flex-wrap:wrap; gap:30px; justify-content:center; }
+.feature, .benefit { background:#fff; padding:30px; border-radius:20px; flex:1 1 250px; text-align:center; box-shadow:0 10px 20px rgba(0,0,0,0.08); transition: transform 0.3s ease; }
+.feature:hover, .benefit:hover { transform:translateY(-10px); }
+.benefit h4 { margin-bottom:15px; font-size:1.2rem; font-weight:600; }
+
+/* Stats */
+.stats { display:flex; flex-wrap:wrap; gap:30px; justify-content:center; margin-top:60px; }
+.stat { text-align:center; flex:1 1 150px; }
+.stat h3 { font-size:2rem; color:#4f46e5; margin-bottom:10px; }
+
+/* Pricing */
+.pricing { display:flex; flex-wrap:wrap; gap:30px; justify-content:center; margin-top:40px; }
+.plan { background:#fff; padding:40px; border-radius:20px; flex:1 1 300px; text-align:center; box-shadow:0 10px 20px rgba(0,0,0,0.08); }
+.plan h3 { margin-bottom:20px; }
+.plan p { margin-bottom:15px; }
+
+/* Testimonials */
+.testimonials { display:flex; flex-wrap:wrap; gap:30px; justify-content:center; }
+.testimonial { background:#fff; padding:30px; border-radius:20px; flex:1 1 300px; box-shadow:0 10px 20px rgba(0,0,0,0.08); }
+
+/* FAQ */
+.faq { max-width:900px; margin:auto; }
+.faq-item { background:#fff; padding:20px 30px; border-radius:15px; margin-bottom:15px; box-shadow:0 4px 10px rgba(0,0,0,0.08); cursor:pointer; }
+.faq-item h4 { font-weight:600; }
+.faq-item p { display:none; margin-top:10px; }
+
+/* CTA Banner */
+.cta { background:#4f46e5; color:#fff; text-align:center; padding:80px 20px; border-radius:20px; margin:60px 0; }
+.cta h2 { font-size:2rem; margin-bottom:20px; }
+.cta p { margin-bottom:30px; font-size:1.1rem; }
+
+/* Contact Form */
+form { display:flex; flex-direction:column; gap:15px; max-width:500px; margin:40px auto 0; }
+form input, form textarea { padding:10px; border-radius:8px; border:1px solid #ccc; width:100%; }
+form button { padding:12px; border-radius:8px; background:#4f46e5; color:#fff; font-weight:600; border:none; cursor:pointer; }
+
+/* Footer */
+footer { background:#111; color:#fff; text-align:center; padding:60px 20px; margin-top:60px; }
+
+/* Modal Styles */
+.modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.6); justify-content:center; align-items:center; z-index:200; }
+.modal-content { background:#fff; padding:40px; border-radius:12px; max-width:400px; width:90%; position:relative; }
+.modal-content h3 { margin-bottom:20px; }
+.modal-content input { width:100%; margin-bottom:15px; padding:10px; border-radius:8px; border:1px solid #ccc; }
+.modal-content button { padding:12px; width:100%; border:none; border-radius:8px; background:#4f46e5; color:#fff; font-weight:600; cursor:pointer; }
+.modal-close { position:absolute; top:10px; right:15px; cursor:pointer; font-size:18px; font-weight:bold; }
+
+/* Responsive */
+@media(max-width:768px){ nav ul{ display:none; } .features,.benefits,.pricing,.testimonials,.stats{ flex-direction:column; align-items:center; } }
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav>
+  <div class="logo">Elevate Web Agency</div>
+  <ul>
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#benefits">Benefits</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="cta-buttons">
+    <button class="btn" id="signupBtn">Sign Up</button>
+    <button class="btn secondary" id="loginBtn">Login</button>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header id="hero" class="hero">
+  <h1 style="color:white;">Elevate Your Client’s Web Presence</h1>
+  <p>Get a modern website solution with continuous support, hosting, and design updates without large upfront costs.</p>
+  <a href="#contact" class="btn">Request Free Demo</a>
+  <a href="#pricing" class="btn">View Plans</a>
+</header>
+
+<!-- Features -->
+<section id="features">
+  <h2>Our Core Services</h2>
+  <div class="features">
+    <div class="feature">
+      <h3>Responsive Design</h3>
+      <p>Create websites that look perfect on all devices.</p>
+    </div>
+    <div class="feature">
+      <h3>Ongoing Support</h3>
+      <p>We provide maintenance, updates, and support 24/7.</p>
+    </div>
+    <div class="feature">
+      <h3>Secure Hosting</h3>
+      <p>Reliable, fast, and secure hosting included.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Benefits -->
+<section id="benefits">
+  <h2>Why Choose Us</h2>
+  <div class="benefits">
+    <div class="benefit">
+      <h4>Lower Costs</h4>
+      <p>Affordable monthly fees with full service included.</p>
+    </div>
+    <div class="benefit">
+      <h4>Retain Clients</h4>
+      <p>Offer ongoing value to your customers effortlessly.</p>
+    </div>
+    <div class="benefit">
+      <h4>Boost Revenue</h4>
+      <p>Increase recurring revenue through managed services.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="stats">
+  <div class="stat">
+    <h3>200+</h3>
+    <p>Websites Delivered</p>
+  </div>
+  <div class="stat">
+    <h3>80+</h3>
+    <p>Active Clients</p>
+  </div>
+  <div class="stat">
+    <h3>25%</h3>
+    <p>MRR Growth</p>
+  </div>
+  <div class="stat">
+    <h3>75%</h3>
+    <p>Average Cost Savings</p>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section id="pricing">
+  <h2>Our Plans</h2>
+  <div class="pricing">
+    <div class="plan">
+      <h3>Starter</h3>
+      <p><strong>Setup Fee:</strong> $500–$750</p>
+      <p><strong>Monthly Fee:</strong> $150</p>
+      <p>Includes template-based design, secure hosting, and monthly maintenance. Ideal for agencies starting out.</p>
+      <a href="#contact" class="btn">Get Started</a>
+    </div>
+
+    <div class="plan">
+      <h3>Growth</h3>
+      <p><strong>Setup Fee:</strong> $1,500</p>
+      <p><strong>Monthly Fee:</strong> $250</p>
+      <p>Custom design tweaks, priority support, more pages, and added automation tools for growing agencies.</p>
+      <a href="#contact" class="btn">Get Started</a>
+    </div>
+
+    <div class="plan">
+      <h3>Premium Agency</h3>
+      <p><strong>Setup Fee:</strong> $3,000+</p>
+      <p><strong>Monthly Fee:</strong> $400–$500</p>
+      <p>White-label solution, full custom features, unlimited edits, advanced automation, and 24/7 priority support.</p>
+      <a href="#contact" class="btn">Get Started</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <h2>Start Your Agency Transformation Today</h2>
+  <p>Sign up and let Elevate Web Agency handle your web services efficiently and professionally.</p>
+  <a href="#contact" class="btn">Request Free Demo</a>
+</section>
+
+<!-- Contact Form -->
+<section id="contact">
+  <h2>Get In Touch</h2>
+  <form action="send_email.php" method="POST">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <h2>Frequently Asked Questions</h2>
+  <div class="faq">
+    <div class="faq-item">
+      <h4>What does the monthly fee include?</h4>
+      <p>Monthly fee covers website hosting, updates, security, and ongoing support.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Can I customize the design?</h4>
+      <p>Yes, we tailor designs to your agency’s needs and brand identity.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Is hosting included?</h4>
+      <p>Yes, all plans come with reliable and secure hosting.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>© 2025 Elevate Web Agency. All rights reserved.</p>
+</footer>
+
+<script>
+// FAQ toggle
+document.querySelectorAll('.faq-item').forEach(item => {
+  item.addEventListener('click', () => {
+    const p = item.querySelector('p');
+    p.style.display = p.style.display === 'block' ? 'none' : 'block';
+  });
+});
+</script>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elevate Web Agency</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 40px;
+            background: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            color: #222;
+        }
+        p {
+            text-align: center;
+        }
+        .box {
+            max-width: 600px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        a {
+            color: #0055ff;
+            font-weight: bold;
+        }
+    </style>
+
+
+    <div class="box">
+        <h1>Elevate Web Agency</h1>
+        <p>Your GitHub Pages site is working!</p>
+
+        <p>If you see this page, GitHub Pages is successfully serving your website.</p>
+
+        <p>You can now replace the content of this <b>index.html</b> file with your real website code.</p>
+    </div>
+
+
+
+</body>
+</html>
